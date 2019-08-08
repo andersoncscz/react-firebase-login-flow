@@ -1,11 +1,22 @@
 {
-  "name": "virtual-store-manager-web",
+  "name": "react-firebase-login-flow",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.18",
+    "@fortawesome/free-brands-svg-icons": "^5.8.2",
+    "@fortawesome/free-regular-svg-icons": "^5.8.2",
+    "@fortawesome/free-solid-svg-icons": "^5.8.2",
+    "@fortawesome/react-fontawesome": "^0.1.4",
+    "bootstrap": "^4.3.1",
+    "firebase": "^6.3.4",
+    "formik": "^1.5.8",
     "react": "^16.8.6",
+    "react-animated-css": "^1.2.1",
     "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1"
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "3.0.1",
+    "yup": "^0.27.0"
   },
   "scripts": {
     "start": "react-scripts start",

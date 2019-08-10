@@ -1,27 +1,22 @@
-import React from 'react'
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import Index from './index/Index';
+import Home from './home/Home';
 import Login from './login/Login';
-
-const isAuthenticated = () => true;
-const PrivateRoute = ({ component: Component, ...rest }) => (
-    <Route {...rest} render={ props => isAuthenticated() 
-            ? (<Component {...props} />) 
-            : (<Redirect to={{ pathname: "/", state: { from: props.location } }} />)
-        }
-    />
-);
-
+import Splash from './splash/Splash';
+import PrivateRoute from './PrivateRoute'
 
 const Routes = () => (
     <BrowserRouter>
         <Switch>
-            <Route path="/" exact={true} component={Login} />
-            <PrivateRoute path="/index" component={Index} />
+            <Route path="/" exact={true} component={Splash} />
+            <Route path="/login" component={Login} />
+            <PrivateRoute path="/home" component={Home} />
             <Route path="*" component={() => <h1>Page not found</h1>} />
         </Switch>
     </BrowserRouter>
-    
 )
+
+    
 export default Routes;
+//() => <div className="d-flex justify-content-center align-items-center vh-100 vw-100">loading</div>

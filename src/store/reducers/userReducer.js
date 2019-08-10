@@ -5,10 +5,10 @@ const INITIAL_STATE = null
 export default function userReducer(state = INITIAL_STATE, action) {
     switch (action.type) {
         case SIGNIN_SUCCESS:
-            const { email, displayName, token } = action.user
+            const { email, displayName, photoURL, token } = action.user
             return {
                 ...state, 
-                ...{ email, displayName, token }
+                ...{ email, displayName, photoURL, token }
             };
         case SIGNOUT:
             return INITIAL_STATE;

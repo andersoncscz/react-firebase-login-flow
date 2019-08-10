@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { Animated } from "react-animated-css";
@@ -6,28 +6,44 @@ import { Animated } from "react-animated-css";
 import { signOut } from '../../services/auth';
 import { signOut as signOutAction } from '../../store/actions';
 
-import loginLogo from '../../assets/images/login-logo.png';
 
 const Home = ({ history }) => {
 
+    const [isSignOutVisible, setSignOutVisible] = useState(true)
     const user = useSelector(state => state.user);
     const dispatch = useDispatch()
 
+
     const handleSignOut = async () => {
-        await signOut()
-        dispatch(signOutAction())
-        history.push("/login");
+        
+        setSignOutVisible(false)
+
+        setTimeout(() => {
+            signOut()
+            dispatch(signOutAction())
+            history.push("/login");            
+        }, 1200)
     }
 
     return (
         <div className="vh-100 d-flex flex-column justify-content-center align-items-center">
-            <h1>Hello {user&&user.email}</h1>
-            <Animated className="w-25" animationIn="flipInY" animationInDuration={2500} isVisible={true}>
-                <img alt="" className="img-fluid" src={loginLogo}></img>
+            <Animated animationIn="zoomIn" animationInDuration={600} isVisible={true}>
+                <h1>Hello</h1>
             </Animated>
-            <div>
-                <button onClick={handleSignOut} type="button" className="flex-fill font-weight-bold btn btn-info">SIGN OUT</button>
-            </div>
+            <Animated className="mb-4" animationIn="slideInDown" animationInDuration={1000} isVisible={true}>
+                <span>{user&&user.displayName}</span>
+            </Animated>                
+            {
+                user && user.photoURL &&
+                <Animated animationIn="bounceIn" animationInDuration={2200} isVisible={true}>
+                    <img alt="" style={{height: 100, width: 100}} className="rounded-circle" src={user.photoURL}></img>
+                </Animated>
+            }
+            <Animated animationInDelay={900} animationIn="fadeInUp" animationOut="bounceOut" animationInDuration={600} isVisible={isSignOutVisible}>
+                <div className="mt-4">
+                    <button onClick={handleSignOut} type="button" className="font-weight-bold btn btn-danger">SIGN OUT</button>
+                </div>
+            </Animated>
         </div>
     )
 }

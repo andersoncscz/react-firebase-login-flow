@@ -70,18 +70,28 @@ const LoginForm = ({ history } ) => {
                     <div className="form-group">
                         <label className="font-weight-bold text-info" htmlFor="email">Email</label>
                         <Field type="email" name="email" className="form-control" aria-describedby="emailHelp" placeholder="Email" />
-                        {errors.email && touched.email ? <span className="font-weight-bold text-danger" style={styles.formError}>{errors.email}</span> : null}
+                        {
+                            errors.email && touched.email && 
+                            <Animated animationIn="slideInUp" animationInDuration={700} isVisible={true}>
+                                <span className="font-weight-bold text-danger" style={styles.formError}>{errors.email}</span>
+                            </Animated>
+                        }
                     </div>
                     <div className="form-group">
                         <label className="font-weight-bold text-info" htmlFor="password">Password</label>
                         <Field type="password" name="password" className="form-control" placeholder="Password" />
-                        {errors.password && touched.password ? <span className="font-weight-bold text-danger" style={styles.formError}>{errors.password}</span> : null}
+                        {
+                            errors.password && touched.password && 
+                            <Animated animationIn="slideInUp" animationInDuration={700} isVisible={true}>
+                                <span className="font-weight-bold text-danger" style={styles.formError}>{errors.password}</span>
+                            </Animated>
+                        }
                     </div>
                     <div className="d-flex mt-4">
                         {
                             !submitState.isSubmitting ?
                                 <div className="flex-fill d-flex flex-column justify-content-center align-items-stretch">
-                                    <Animated className="flex-fill d-flex mt-2" animationIn="bounceIn" animationOut="bounceOut" animationInDuration={animationDuration} animationOutDuration={animationDuration} isVisible={!submitState.isSubmitting}>
+                                    <Animated className="flex-fill d-flex mt-2" animationIn="pulse" animationOut="bounceOut" animationInDuration={animationDuration} animationOutDuration={animationDuration} isVisible={!submitState.isSubmitting}>
                                         <div className="flex-fill d-flex flex-column">
                                             <button disabled={submitState.isSubmitting} type="submit" className="flex-fill font-weight-bold btn btn-secondary">Sign In with an Account</button>
                                             <button disabled={submitState.isSubmitting} onClick={handleSignInWithSocialNetworks} type="button" className="flex-fill font-weight-bold btn btn-danger mt-2">Sign in with Google</button>
@@ -90,7 +100,7 @@ const LoginForm = ({ history } ) => {
                                     </Animated>
                                     {
                                         submitState.loginFailed &&
-                                        <Animated className="flex-fill d-flex mt-2" animationIn="tada" animationOut="fadeOut" animationInDuration={animationDuration} animationOutDuration={animationDuration} isVisible={!submitState.isSubmitting}>
+                                        <Animated className="flex-fill d-flex mt-2" animationIn="slideInUp" animationOut="fadeOut" animationInDuration={animationDuration} animationOutDuration={animationDuration} isVisible={!submitState.isSubmitting}>
                                             <small className="d-flex flex-fill form-text text-muted mt-2">
                                                 <span className="flex-fill text-center text-danger font-weight-bold"><FontAwesomeIcon icon="lock" style={styles.formError} /> Sign In Failed.</span>
                                             </small>

@@ -24,8 +24,11 @@ export const signInWithSocialNetworks = async () => {
     return new Promise((resolve, reject) => {
         const provider = new firebase.auth.GoogleAuthProvider();
         firebase.auth().signInWithPopup(provider).then((result) => {
+
             const token = result.credential.accessToken; // This gives you a Google Access Token. You can use it to access the Google API.
             const user = result.user; // The signed-in user info.
+            console.log(user)
+
             resolve({
                 ...user,
                 token

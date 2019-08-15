@@ -21,8 +21,23 @@ const Home = ({ history }) => {
         setTimeout(() => {
             signOut()
             dispatch(signOutAction())
-            history.push("/login");            
+            history.push("/signin");            
         }, 1200)
+    }
+
+
+    const renderRoundedComponent = () => {
+        if (user) {
+            if (user.photoURL) {
+                return <img alt="" style={{height: 100, width: 100}} className="rounded-circle" src={user.photoURL}></img>
+            }
+            return  (
+                <div className="rounded-circle bg-danger d-flex justify-content-center align-items-center" style={{height: 100, width: 100}}>
+                    <span className="text-light display-4">{user.displayName ? user.displayName.toUpperCase().substring(0,1) : user.email.toUpperCase().substring(0,1)}</span>
+                </div>
+            )
+        }
+        return null
     }
 
     return (
@@ -32,13 +47,13 @@ const Home = ({ history }) => {
             </Animated>
             <Animated className="mb-4" animationIn="slideInDown" animationInDuration={1000} isVisible={true}>
                 <span>{user&&user.displayName}</span>
-            </Animated>                
-            {
-                user && user.photoURL &&
-                <Animated animationIn="bounceIn" animationInDuration={2200} isVisible={true}>
-                    <img alt="" style={{height: 100, width: 100}} className="rounded-circle" src={user.photoURL}></img>
-                </Animated>
-            }
+            </Animated>
+            <Animated animationIn="bounceIn" animationInDuration={2200} isVisible={true}>
+                {renderRoundedComponent()}
+            </Animated>
+            <Animated className="mt-4" animationIn="slideInDown" animationInDuration={1000} isVisible={true}>
+                <span>{user&&user.email}</span>
+            </Animated>            
             <Animated animationInDelay={900} animationIn="fadeInUp" animationOut="bounceOut" animationInDuration={600} isVisible={isSignOutVisible}>
                 <div className="mt-4">
                     <button onClick={handleSignOut} type="button" className="font-weight-bold btn btn-danger">SIGN OUT</button>

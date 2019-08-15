@@ -19,7 +19,7 @@ const Splash = ({ history }) => {
                     history.push("/home");
                 }
                 else {
-                    history.push("/login");
+                    history.push("/signin");
                 }
             }
             

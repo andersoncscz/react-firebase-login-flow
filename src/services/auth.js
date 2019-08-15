@@ -37,3 +37,13 @@ export const signInWithSocialNetworks = async () => {
         .catch((error) => reject(error));
     })
 }
+
+export const signUp = async (email, password) => {
+    return new Promise((resolve, reject) => {
+        firebase
+            .auth()
+            .createUserWithEmailAndPassword(email, password)
+            .then(response => resolve(response.user))
+            .catch((error) => reject(error));
+    })
+}

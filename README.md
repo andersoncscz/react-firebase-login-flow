@@ -1,9 +1,9 @@
 ## ReactJS Login Flow
 
-ReactJS login flow using Firebase SDK.
+ReactJS Sign In and Sign Up flow using Firebase SDK.
 
 ### Dependencies
-    - Hooks in action
+    - React Animated CSS
     - Formik + Yup
     - Firebase SDK
-    - Redux will be added soon in order to manage the global state.
+    - Redux + Hooks.
